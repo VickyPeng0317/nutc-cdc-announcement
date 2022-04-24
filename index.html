@@ -11,7 +11,9 @@
     <script src="lib/js/jquery-3.3.1.slim.min.js"></script>
     <script src="lib/js/popper.min.js"></script>
     <script src="lib/js/bootstrap.min.js"></script>
+    <script src="lib/js/rxjs.umd.min.js"></script>
     <script src="lib/js/vue.js"></script>
+    <script src="src/js/api-service.js"></script>
 </head>
 
 <body>
@@ -85,7 +87,8 @@
                                     <template v-if="courseGroup.courseList.length > 0">
                                         <template v-for="(course, index) in courseGroup.courseList">
                                             <tr :class="{ even: groupIndex % 2 === 1 }" class="diag-table-row">
-                                                <th v-if="index === 0" class="diag-table-week" scope="row" :rowspan="courseGroup.courseList.length">
+                                                <th v-if="index === 0" class="diag-table-week" scope="row"
+                                                    :rowspan="courseGroup.courseList.length">
                                                     {{ courseGroup.groupTitle }}
                                                 </th>
                                                 <td>
@@ -107,154 +110,17 @@
         var app = new Vue({
             el: '#app',
             data: {
-                diagList: [
-                    {
-                        diagNum: 123456,
-                        diagDate: '2022/04/24',
-                        courseGroupList: [
-                            {
-                                groupTitle: '一',
-                                courseList: [
-                                    {
-                                        courseName: '多媒體技術與應用',
-                                        courseTime: '第1、2節',
-                                        courseRoom: '2701'
-                                    },
-                                    {
-                                        courseName: '高等資料探勘',
-                                        courseTime: '第3、4節',
-                                        courseRoom: '2801'
-                                    }
-                                ]
-                            },
-                            {
-                                groupTitle: '二',
-                                courseList: [
-                                    {
-                                        courseName: '進階影像處理',
-                                        courseTime: '第3、4節',
-                                        courseRoom: '2701'
-                                    },
-                                    {
-                                        courseName: '高等資料探勘',
-                                        courseTime: '第5、6節',
-                                        courseRoom: '3606'
-                                    },
-                                    {
-                                        courseName: '多媒體技術與應用',
-                                        courseTime: '第7、8節',
-                                        courseRoom: '3606'
-                                    }
-                                ]
-                            },
-                            {
-                                groupTitle: '三',
-                                courseList: [
-                                    {
-                                        courseName: '高等資料探勘',
-                                        courseTime: '第1、2節',
-                                        courseRoom: '2701'
-                                    }
-                                ]
-                            },
-                            {
-                                groupTitle: '四',
-                                courseList: []
-                            },
-                            {
-                                groupTitle: '五',
-                                courseList: [
-                                    {
-                                        courseName: '多媒體技術與應用',
-                                        courseTime: '第1、2節',
-                                        courseRoom: '2701'
-                                    },
-                                    {
-                                        courseName: '高等資料探勘',
-                                        courseTime: '第3、4節',
-                                        courseRoom: '2801'
-                                    }
-                                ]
-                            },
-                        ]
-                    },
-                    {
-                        diagNum: 123457,
-                        diagDate: '2022/04/25',
-                        courseGroupList: [
-                            {
-                                groupTitle: '一',
-                                courseList: [
-                                    {
-                                        courseName: '多媒體技術與應用',
-                                        courseTime: '第1、2節',
-                                        courseRoom: '2701'
-                                    },
-                                    {
-                                        courseName: '高等資料探勘',
-                                        courseTime: '第3、4節',
-                                        courseRoom: '2801'
-                                    }
-                                ]
-                            },
-                            {
-                                groupTitle: '二',
-                                courseList: [
-                                    {
-                                        courseName: '進階影像處理',
-                                        courseTime: '第1、2節',
-                                        courseRoom: '2701'
-                                    },
-                                    {
-                                        courseName: '高等資料探勘',
-                                        courseTime: '第3、4節',
-                                        courseRoom: '3606'
-                                    },
-                                    {
-                                        courseName: '多媒體技術與應用',
-                                        courseTime: '第7、8節',
-                                        courseRoom: '3606'
-                                    }
-                                ]
-                            },
-                            {
-                                groupTitle: '三',
-                                courseList: [
-                                    {
-                                        courseName: '高等資料探勘',
-                                        courseTime: '第1、2節',
-                                        courseRoom: '2701'
-                                    }
-                                ]
-                            },
-                            {
-                                groupTitle: '四',
-                                courseList: []
-                            },
-                            {
-                                groupTitle: '五',
-                                courseList: [
-                                    {
-                                        courseName: '多媒體技術與應用',
-                                        courseTime: '第1、2節',
-                                        courseRoom: '2701'
-                                    },
-                                    {
-                                        courseName: '高等資料探勘',
-                                        courseTime: '第3、4節',
-                                        courseRoom: '2801'
-                                    }
-                                ]
-                            },
-                        ]
-                    }
-                ]
+                diagList: []
             },
             methods: {
-                formatText: function (event) {
-                    this.outputText = this.inputText.split('. ').join('. \n\n')
-                    console.log(this.inputText);
+                getDiagList() {
+                    apiService.getDiagList().subscribe(data => {
+                        this.diagList = data;
+                    });
                 }
+            },
+            created() {
+                this.getDiagList();
             }
         })
     </script>
