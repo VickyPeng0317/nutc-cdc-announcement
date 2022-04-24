@@ -7,6 +7,7 @@ var app = new Vue({
         },
         diagList: [],
         searchTypeList: [
+            { name:'今日', value: 'today' },
             { name:'本週', value: 'thisWeek' },
             { name:'當月', value: 'thisMoon' },
             { name:'上月', value: 'lastMoon' },
@@ -15,7 +16,7 @@ var app = new Vue({
         selectedSearchType: ''
     },
     methods: {
-        search(searchType = 'thisWeek') {
+        search(searchType = 'today') {
             this.selectedSearchType = searchType;
             this.getDiagCounter(searchType);
         },
