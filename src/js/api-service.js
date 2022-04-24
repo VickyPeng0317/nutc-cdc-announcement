@@ -1,6 +1,8 @@
 const serverPath = '127.0.0.1';
 const { range, filter, map, of } = rxjs;
 
+// https://rxjs.dev/api/ajax/ajax
+
 function getDiagList() {
     return of([
         {
