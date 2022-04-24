@@ -68,6 +68,17 @@ body {
     font-size: 18px;
 }
 
+.diag-card-header-case {
+    color: #76C4F5
+}
+
+.diag-card-title-info {
+    font-size:17px; 
+    background-color: #76C4F5; 
+    color: #ffffff; 
+    text-align: center; font-weight: bold;
+}
+
 .diag-table-header {
     background-color: #19488C;
     color: #ffffff;

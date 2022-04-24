@@ -53,11 +53,10 @@
                 <div class="diag-card">
                     <div class="diag-card-header text-center">
                         <span>({{ item.diagDate }})</span>
-                        <span style="color: #76C4F5">案 {{ item.diagNum }}</span>
+                        <span class="diag-card-header-case">案 {{ item.diagNum }}</span>
                     </div>
                     <div class="pt-2 pr-2 pl-2">
-                        <div
-                            style="font-size:17px; background-color: #76C4F5; color: #ffffff; text-align: center; font-weight: bold;">
+                        <div class="diag-card-title-info">
                             課程足跡
                         </div>
                     </div>
@@ -79,8 +78,7 @@
                                             <th class="diag-table-week" scope="row">
                                                 {{ courseGroup.groupTitle }}
                                             </th>
-                                            <td>(無)</td>
-                                            <td>(無)</td>
+                                            <td colspan="2" class="text-center">(無)</td>
                                         </tr>
                                     </template>
                                     <!-- 有課 -->
