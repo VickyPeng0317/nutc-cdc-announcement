@@ -1,0 +1,88 @@
+.title {
+    background-color: #e9ecef;
+    border-radius: .3rem;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+body {
+    font-family: Microsoft JhengHei !important;
+}
+
+.header {
+    background-color: #19488C !important;
+}
+
+.header-text {
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.count-card {
+    border: 1px solid #bababa;
+}
+
+.count-card-header {
+    background-color: #76C4F5;
+    color: #ffffff;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.count-card-body {
+    text-align: center;
+    font-size: 30px;
+}
+
+.menu-btn-group {
+    background-color: #f0f0f0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.menu-button {
+    background-color: #97B2DF;
+    color: #ffffff !important;
+}
+
+.menu-button.active {
+    background-color: #19488C;
+    color: #ffffff !important;
+}
+
+.diag-card {
+    border: 1px solid #19488C;
+}
+
+.diag-card-header {
+    background-color: #19488C;
+    color: #ffffff;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.diag-table-header {
+    background-color: #19488C;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.diag-table-row {
+    font-weight: bold;
+}
+
+.diag-table-week {
+    vertical-align: middle !important;
+    text-align: center;
+}
+
+.diag-table-row.even{
+    background:#97B2DF;
+}
