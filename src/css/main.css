@@ -1,15 +1,12 @@
-.title {
-    background-color: #e9ecef;
-    border-radius: .3rem;
-    height: 20vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
 body {
     font-family: Microsoft JhengHei !important;
+}
+
+
+@media only screen and (min-width: 500px) {
+    #app {
+        width: 50%;
+    }
 }
 
 .header {

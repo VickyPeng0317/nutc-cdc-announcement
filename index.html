@@ -21,86 +21,88 @@
     <nav class="navbar navbar-dark header">
         <span class="navbar-brand mb-0 h1 header-text">NUTC 確診公告</span>
     </nav>
-    <div id="app">
-        <!-- Banner -->
-        <img src="src/img/banner.png" class="w-100">
-        <!-- Counter -->
-        <div class="p-3">
-            <div class="row">
-                <div class="col-6">
-                    <div class="count-card">
-                        <div class="count-card-header">今日確診</div>
-                        <div class="count-card-body">{{ diagCounter.today }}</div>
+    <div class="d-flex justify-content-center">
+        <div id="app">
+            <!-- Banner -->
+            <img src="src/img/banner.png" class="w-100">
+            <!-- Counter -->
+            <div class="p-3">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="count-card">
+                            <div class="count-card-header">今日確診</div>
+                            <div class="count-card-body">{{ diagCounter.today }}</div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-6">
-                    <div class="count-card">
-                        <div class="count-card-header">累積確診</div>
-                        <div class="count-card-body">{{ diagCounter.total }}</div>
+                    <div class="col-6">
+                        <div class="count-card">
+                            <div class="count-card-header">累積確診</div>
+                            <div class="count-card-body">{{ diagCounter.total }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- Menu -->
-        <div class="d-flex justify-content-around menu-btn-group">
-            <button type="button" class="btn menu-button active">本週</button>
-            <button type="button" class="btn menu-button">當月</button>
-            <button type="button" class="btn menu-button">上月</button>
-            <button type="button" class="btn menu-button">全部</button>
-        </div>
-
-        <!-- Diag list -->
-        <div>
-            <div class="p-2" v-for="item in diagList">
-                <div class="diag-card">
-                    <div class="diag-card-header text-center">
-                        <span>({{ item.diagDate }})</span>
-                        <span class="diag-card-header-case">案 {{ item.diagNum }}</span>
-                    </div>
-                    <div class="pt-2 pr-2 pl-2">
-                        <div class="diag-card-title-info">
-                            課程足跡
+            <!-- Menu -->
+            <div class="d-flex justify-content-around menu-btn-group">
+                <button type="button" class="btn menu-button active">本週</button>
+                <button type="button" class="btn menu-button">當月</button>
+                <button type="button" class="btn menu-button">上月</button>
+                <button type="button" class="btn menu-button">全部</button>
+            </div>
+    
+            <!-- Diag list -->
+            <div>
+                <div class="p-2" v-for="item in diagList">
+                    <div class="diag-card">
+                        <div class="diag-card-header text-center">
+                            <span>({{ item.diagDate }})</span>
+                            <span class="diag-card-header-case">案 {{ item.diagNum }}</span>
                         </div>
-                    </div>
-                    <div class="diag-card-body p-2">
-                        <table class="table table-bordered">
-                            <thead class="diag-table-header">
-                                <tr>
-                                    <th class="text-center" scope="col"></th>
-                                    <th scope="col">課程時間/教室</th>
-                                    <th scope="col">課程名稱</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- 星期幾 -->
-                                <template v-for="(courseGroup, groupIndex) in item.courseGroupList">
-                                    <!-- 沒課 -->
-                                    <template v-if="courseGroup.courseList.length === 0">
-                                        <tr :class="{ even: groupIndex % 2 === 1 }" class="diag-table-row">
-                                            <th class="diag-table-week" scope="row">
-                                                {{ courseGroup.groupTitle }}
-                                            </th>
-                                            <td colspan="2" class="text-center">(無)</td>
-                                        </tr>
-                                    </template>
-                                    <!-- 有課 -->
-                                    <template v-if="courseGroup.courseList.length > 0">
-                                        <template v-for="(course, index) in courseGroup.courseList">
+                        <div class="pt-2 pr-2 pl-2">
+                            <div class="diag-card-title-info">
+                                課程足跡
+                            </div>
+                        </div>
+                        <div class="diag-card-body p-2">
+                            <table class="table table-bordered">
+                                <thead class="diag-table-header">
+                                    <tr>
+                                        <th class="text-center" scope="col"></th>
+                                        <th scope="col">課程時間/教室</th>
+                                        <th scope="col">課程名稱</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- 星期幾 -->
+                                    <template v-for="(courseGroup, groupIndex) in item.courseGroupList">
+                                        <!-- 沒課 -->
+                                        <template v-if="courseGroup.courseList.length === 0">
                                             <tr :class="{ even: groupIndex % 2 === 1 }" class="diag-table-row">
-                                                <th v-if="index === 0" class="diag-table-week" scope="row"
-                                                    :rowspan="courseGroup.courseList.length">
+                                                <th class="diag-table-week" scope="row">
                                                     {{ courseGroup.groupTitle }}
                                                 </th>
-                                                <td>
-                                                    {{ course.courseTime }} ({{ course.courseRoom }})
-                                                </td>
-                                                <td>{{ course.courseName }}</td>
+                                                <td colspan="2" class="text-center">(無)</td>
                                             </tr>
                                         </template>
+                                        <!-- 有課 -->
+                                        <template v-if="courseGroup.courseList.length > 0">
+                                            <template v-for="(course, index) in courseGroup.courseList">
+                                                <tr :class="{ even: groupIndex % 2 === 1 }" class="diag-table-row">
+                                                    <th v-if="index === 0" class="diag-table-week" scope="row"
+                                                        :rowspan="courseGroup.courseList.length">
+                                                        {{ courseGroup.groupTitle }}
+                                                    </th>
+                                                    <td>
+                                                        {{ course.courseTime }} ({{ course.courseRoom }})
+                                                    </td>
+                                                    <td>{{ course.courseName }}</td>
+                                                </tr>
+                                            </template>
+                                        </template>
                                     </template>
-                                </template>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
