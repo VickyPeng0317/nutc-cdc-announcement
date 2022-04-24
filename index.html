@@ -29,13 +29,13 @@
             <div class="p-3">
                 <div class="row">
                     <div class="col-6">
-                        <div class="count-card">
+                        <div class="count-card animated backInLeft">
                             <div class="count-card-header">今日確診</div>
                             <div class="count-card-body">{{ diagCounter.today }}</div>
                         </div>
                     </div>
                     <div class="col-6">
-                        <div class="count-card">
+                        <div class="count-card animated backInRight">
                             <div class="count-card-header">累積確診</div>
                             <div class="count-card-body">{{ diagCounter.total }}</div>
                         </div>
@@ -52,7 +52,7 @@
     
             <!-- Diag list -->
             <div>
-                <div class="p-2" v-for="item in diagList">
+                <div class="p-2 animated backInLeft" v-for="item in diagList">
                     <div class="diag-card">
                         <div class="diag-card-header text-center">
                             <span>({{ item.diagDate }})</span>
