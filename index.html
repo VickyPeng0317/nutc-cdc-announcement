@@ -42,14 +42,14 @@
                     </div>
                 </div>
             </div>
-            <!-- Menu -->
+            <!-- Search menu -->
             <div class="d-flex justify-content-around menu-btn-group">
-                <button type="button" class="btn menu-button active">本週</button>
-                <button type="button" class="btn menu-button">當月</button>
-                <button type="button" class="btn menu-button">上月</button>
-                <button type="button" class="btn menu-button">全部</button>
+                <template v-for="item in searchTypeList">
+                    <button :class="{ active: selectedSearchType === item.value }" type="button" class="btn menu-button" v-on:click="search(item.value)">
+                        {{ item.name }}
+                    </button>
+                </template>
             </div>
-    
             <!-- Diag list -->
             <div>
                 <div class="p-2 animated backInLeft" v-for="item in diagList">
@@ -116,10 +116,21 @@
                     today: 0,
                     total: 0
                 },
-                diagList: []
+                diagList: [],
+                searchTypeList: [
+                    { name:'本週', value: 'thisWeek' },
+                    { name:'當月', value: 'thisMoon' },
+                    { name:'上月', value: 'lastMoon' },
+                    { name:'全部', value: 'all' }
+                ],
+                selectedSearchType: ''
             },
             methods: {
-                getDiagCounter() {
+                search(searchType = 'thisWeek') {
+                    this.selectedSearchType = searchType;
+                    this.getDiagCounter(searchType);
+                },
+                getDiagCounter(searchType) {
                     apiService.getDiagCounter().subscribe(diagCounter => {
                         this.diagCounter = diagCounter;
                     });
@@ -131,7 +142,7 @@
                 }
             },
             created() {
-                this.getDiagCounter();
+                this.search();
                 this.getDiagList();
             }
         })
