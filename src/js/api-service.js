@@ -148,6 +148,14 @@ function getDiagList() {
     ]);
 }
 
+function getDiagCounter() {
+    return of({
+        today: 0,
+        total: 3
+    });
+}
+
 const apiService = {
-    getDiagList
+    getDiagList,
+    getDiagCounter
 };

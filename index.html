@@ -30,13 +30,13 @@
                 <div class="col-6">
                     <div class="count-card">
                         <div class="count-card-header">今日確診</div>
-                        <div class="count-card-body">0</div>
+                        <div class="count-card-body">{{ diagCounter.today }}</div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="count-card">
                         <div class="count-card-header">累積確診</div>
-                        <div class="count-card-body">2</div>
+                        <div class="count-card-body">{{ diagCounter.total }}</div>
                     </div>
                 </div>
             </div>
@@ -110,16 +110,26 @@
         var app = new Vue({
             el: '#app',
             data: {
+                diagCounter: {
+                    today: 0,
+                    total: 0
+                },
                 diagList: []
             },
             methods: {
+                getDiagCounter() {
+                    apiService.getDiagCounter().subscribe(diagCounter => {
+                        this.diagCounter = diagCounter;
+                    });
+                },
                 getDiagList() {
-                    apiService.getDiagList().subscribe(data => {
-                        this.diagList = data;
+                    apiService.getDiagList().subscribe(diagList => {
+                        this.diagList = diagList;
                     });
                 }
             },
             created() {
+                this.getDiagCounter();
                 this.getDiagList();
             }
         })
